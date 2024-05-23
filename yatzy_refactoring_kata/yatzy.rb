@@ -93,16 +93,16 @@ class Yatzy
     0
   end
 
-  def ones(*args)
-    singles(*args, 1)
+  def ones(*_args)
+    singles(*@dice, 1)
   end
 
   def twos(*args)
-    singles(*args, 2)
+    singles(*@dice, 2)
   end
 
   def threes(*args)
-    singles(*args, 3)
+    singles(*@dice, 3)
   end
 
   def score_pair(d1, d2, d3, d4, d5)
