@@ -13,124 +13,43 @@ class Yatzy
     end
 
     def ones(*args)
-      singles(*args, 1)
+      new(*args).ones(*args)
     end
 
     def twos(*args)
-      singles(*args, 2)
+      new(*args).twos(*args)
     end
 
     def threes(*args)
-      singles(*args, 3)
+      new(*args).threes(*args)
     end
 
-    def score_pair(d1, d2, d3, d4, d5)
-      counts = [0] * 6
-      counts[d1 - 1] += 1
-      counts[d2 - 1] += 1
-      counts[d3 - 1] += 1
-      counts[d4 - 1] += 1
-      counts[d5 - 1] += 1
-      (0...6).each do |at|
-        return (6 - at) * 2 if counts[6 - at - 1] >= 2
-      end
-      0
+    def score_pair(*args)
+      new(*args).score_pair(*args)
     end
 
-    def two_pair(d1, d2, d3, d4, d5)
-      counts = [0] * 6
-      counts[d1 - 1] += 1
-      counts[d2 - 1] += 1
-      counts[d3 - 1] += 1
-      counts[d4 - 1] += 1
-      counts[d5 - 1] += 1
-      n = 0
-      score = 0
-      for i in Array 0..5
-        if counts[6 - i - 1] >= 2
-          n += 1
-          score += (6 - i)
-        end
-      end
-      if n == 2
-        score * 2
-      else
-        0
-      end
+    def two_pair(*args)
+      new(*args).two_pair(*args)
     end
 
     def four_of_a_kind(*args)
-      of_a_kind(*args, 4)
+      new(*args).four_of_a_kind(*args)
     end
 
     def three_of_a_kind(*args)
-      of_a_kind(*args, 3)
+      new(*args).three_of_a_kind(*args)
     end
 
-    def smallStraight(d1, d2, d3, d4, d5)
-      tallies = [0] * 6
-      tallies[d1 - 1] += 1
-      tallies[d2 - 1] += 1
-      tallies[d3 - 1] += 1
-      tallies[d4 - 1] += 1
-      tallies[d5 - 1] += 1
-      if tallies[0] == 1 &&
-         tallies[1] == 1 &&
-         tallies[2] == 1 &&
-         tallies[3] == 1 &&
-         tallies[4] == 1
-        15
-      else
-        0
-      end
+    def smallStraight(*args)
+      new(*args).smallStraight(*args)
     end
 
-    def largeStraight(d1, d2, d3, d4, d5)
-      tallies = [0] * 6
-      tallies[d1 - 1] += 1
-      tallies[d2 - 1] += 1
-      tallies[d3 - 1] += 1
-      tallies[d4 - 1] += 1
-      tallies[d5 - 1] += 1
-      return 20 if tallies[1] == 1 && tallies[2] == 1 && tallies[3] == 1 && tallies[4] == 1 && tallies[5] == 1
-
-      0
+    def largeStraight(*args)
+      new(*args).largeStraight(*args)
     end
 
-    def fullHouse(d1, d2, d3, d4, d5)
-      tallies = []
-      _two = false
-      i = 0
-      _two_at = 0
-      _three = false
-      _three_at = 0
-
-      tallies = [0] * 6
-      tallies[d1 - 1] += 1
-      tallies[d2 - 1] += 1
-      tallies[d3 - 1] += 1
-      tallies[d4 - 1] += 1
-      tallies[d5 - 1] += 1
-
-      for i in Array 0..5
-        if tallies[i] == 2
-          _two = true
-          _two_at = i + 1
-        end
-      end
-
-      for i in Array 0..5
-        if tallies[i] == 3
-          _three = true
-          _three_at = i + 1
-        end
-      end
-
-      if _two && _three
-        (_two_at * 2) + (_three_at * 3)
-      else
-        0
-      end
+    def fullHouse(*args)
+      new(*args).fullHouse(*args)
     end
 
     private
