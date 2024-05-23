@@ -193,6 +193,21 @@ class Yatzy
       sum
     end
 
+    def of_a_kind(d1, d2, d3, d4, d5, count)
+      t = [0]*6
+      t[d1-1] += 1
+      t[d2-1] += 1
+      t[d3-1] += 1
+      t[d4-1] += 1
+      t[d5-1] += 1
+      for i in [0,1,2,3,4,5]
+        if (t[i] >= count)
+          return (i+1) * count
+        end
+      end
+      0
+    end
+
   end
 
   def fours
