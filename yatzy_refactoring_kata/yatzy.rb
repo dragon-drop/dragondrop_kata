@@ -113,12 +113,6 @@ class Yatzy
   end
 
   def two_pair(d1, d2, d3, d4, d5)
-    counts = [0] * 6
-    counts[d1 - 1] += 1
-    counts[d2 - 1] += 1
-    counts[d3 - 1] += 1
-    counts[d4 - 1] += 1
-    counts[d5 - 1] += 1
     n = 0
     score = 0
     for i in Array 0..5
