@@ -77,19 +77,8 @@ class Yatzy
       end
     end
 
-    def four_of_a_kind( _one,  _two,  d3,  d4,  d5)
-      tallies = [0]*6
-      tallies[_one-1] += 1
-      tallies[_two-1] += 1
-      tallies[d3-1] += 1
-      tallies[d4-1] += 1
-      tallies[d5-1] += 1
-      for i in (0..6)
-        if (tallies[i] >= 4)
-          return (i+1) * 4
-        end
-      end
-      return 0
+    def four_of_a_kind(*args)
+      of_a_kind(*args, 4)
     end
 
     def three_of_a_kind(*args)
