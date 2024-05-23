@@ -39,140 +39,140 @@ class Yatzy
       singles(*args, 3)
     end
 
-  def score_pair( d1,  d2,  d3,  d4,  d5)
-    counts = [0]*6
-    counts[d1-1] += 1
-    counts[d2-1] += 1
-    counts[d3-1] += 1
-    counts[d4-1] += 1
-    counts[d5-1] += 1
-    at = 0
-    (0...6).each do |at|
-      if (counts[6-at-1] >= 2)
-        return (6-at)*2
+    def score_pair( d1,  d2,  d3,  d4,  d5)
+      counts = [0]*6
+      counts[d1-1] += 1
+      counts[d2-1] += 1
+      counts[d3-1] += 1
+      counts[d4-1] += 1
+      counts[d5-1] += 1
+      at = 0
+      (0...6).each do |at|
+        if (counts[6-at-1] >= 2)
+          return (6-at)*2
+        end
       end
-    end
-    return 0
-  end
-
-  def two_pair( d1,  d2,  d3,  d4,  d5)
-    counts = [0]*6
-    counts[d1-1] += 1
-    counts[d2-1] += 1
-    counts[d3-1] += 1
-    counts[d4-1] += 1
-    counts[d5-1] += 1
-    n = 0
-    score = 0
-    for i in Array 0..5
-      if (counts[6-i-1] >= 2)
-        n = n+1
-        score += (6-i)
-      end
-    end
-    if (n == 2)
-      return score * 2
-    else
       return 0
     end
-  end
 
-  def four_of_a_kind( _one,  _two,  d3,  d4,  d5)
-    tallies = [0]*6
-    tallies[_one-1] += 1
-    tallies[_two-1] += 1
-    tallies[d3-1] += 1
-    tallies[d4-1] += 1
-    tallies[d5-1] += 1
-    for i in (0..6)
-      if (tallies[i] >= 4)
-        return (i+1) * 4
+    def two_pair( d1,  d2,  d3,  d4,  d5)
+      counts = [0]*6
+      counts[d1-1] += 1
+      counts[d2-1] += 1
+      counts[d3-1] += 1
+      counts[d4-1] += 1
+      counts[d5-1] += 1
+      n = 0
+      score = 0
+      for i in Array 0..5
+        if (counts[6-i-1] >= 2)
+          n = n+1
+          score += (6-i)
+        end
       end
-    end
-    return 0
-  end
-
-  def three_of_a_kind( d1,  d2,  d3,  d4,  d5)
-    t = [0]*6
-    t[d1-1] += 1
-    t[d2-1] += 1
-    t[d3-1] += 1
-    t[d4-1] += 1
-    t[d5-1] += 1
-    for i in [0,1,2,3,4,5]
-      if (t[i] >= 3)
-        return (i+1) * 3
-      end
-    end
-    0
-  end
-
-  def smallStraight( d1,  d2,  d3,  d4,  d5)
-    tallies = [0]*6
-    tallies[d1-1] += 1
-    tallies[d2-1] += 1
-    tallies[d3-1] += 1
-    tallies[d4-1] += 1
-    tallies[d5-1] += 1
-    (tallies[0] == 1 and
-      tallies[1] == 1 and
-      tallies[2] == 1 and
-      tallies[3] == 1 and
-      tallies[4] == 1) ? 15 : 0
-  end
-
-  def largeStraight( d1,  d2,  d3,  d4,  d5)
-    tallies = [0]*6
-    tallies[d1-1] += 1
-    tallies[d2-1] += 1
-    tallies[d3-1] += 1
-    tallies[d4-1] += 1
-    tallies[d5-1] += 1
-    if (tallies[1] == 1 and tallies[2] == 1 and tallies[3] == 1 and tallies[4] == 1 and tallies[5] == 1)
-      return 20
-    end
-    return 0
-  end
-
-  def fullHouse( d1,  d2,  d3,  d4,  d5)
-    tallies = []
-    _two = false
-    i = 0
-    _two_at = 0
-    _three = false
-    _three_at = 0
-
-    tallies = [0]*6
-    tallies[d1-1] += 1
-    tallies[d2-1] += 1
-    tallies[d3-1] += 1
-    tallies[d4-1] += 1
-    tallies[d5-1] += 1
-
-    for i in Array 0..5
-      if (tallies[i] == 2)
-        _two = true
-        _two_at = i+1
+      if (n == 2)
+        return score * 2
+      else
+        return 0
       end
     end
 
-    for i in Array 0..5
-      if (tallies[i] == 3)
-        _three = true
-        _three_at = i+1
+    def four_of_a_kind( _one,  _two,  d3,  d4,  d5)
+      tallies = [0]*6
+      tallies[_one-1] += 1
+      tallies[_two-1] += 1
+      tallies[d3-1] += 1
+      tallies[d4-1] += 1
+      tallies[d5-1] += 1
+      for i in (0..6)
+        if (tallies[i] >= 4)
+          return (i+1) * 4
+        end
       end
-    end
-
-    if (_two and _three)
-      return _two_at * 2 + _three_at * 3
-    else
       return 0
     end
-  end
 
-  private 
+    def three_of_a_kind( d1,  d2,  d3,  d4,  d5)
+      t = [0]*6
+      t[d1-1] += 1
+      t[d2-1] += 1
+      t[d3-1] += 1
+      t[d4-1] += 1
+      t[d5-1] += 1
+      for i in [0,1,2,3,4,5]
+        if (t[i] >= 3)
+          return (i+1) * 3
+        end
+      end
+      0
+    end
 
-  def singles(d1, d2, d3, d4, d5, value)
+    def smallStraight( d1,  d2,  d3,  d4,  d5)
+      tallies = [0]*6
+      tallies[d1-1] += 1
+      tallies[d2-1] += 1
+      tallies[d3-1] += 1
+      tallies[d4-1] += 1
+      tallies[d5-1] += 1
+      (tallies[0] == 1 and
+       tallies[1] == 1 and
+       tallies[2] == 1 and
+       tallies[3] == 1 and
+       tallies[4] == 1) ? 15 : 0
+    end
+
+    def largeStraight( d1,  d2,  d3,  d4,  d5)
+      tallies = [0]*6
+      tallies[d1-1] += 1
+      tallies[d2-1] += 1
+      tallies[d3-1] += 1
+      tallies[d4-1] += 1
+      tallies[d5-1] += 1
+      if (tallies[1] == 1 and tallies[2] == 1 and tallies[3] == 1 and tallies[4] == 1 and tallies[5] == 1)
+        return 20
+      end
+      return 0
+    end
+
+    def fullHouse( d1,  d2,  d3,  d4,  d5)
+      tallies = []
+      _two = false
+      i = 0
+      _two_at = 0
+      _three = false
+      _three_at = 0
+
+      tallies = [0]*6
+      tallies[d1-1] += 1
+      tallies[d2-1] += 1
+      tallies[d3-1] += 1
+      tallies[d4-1] += 1
+      tallies[d5-1] += 1
+
+      for i in Array 0..5
+        if (tallies[i] == 2)
+          _two = true
+          _two_at = i+1
+        end
+      end
+
+      for i in Array 0..5
+        if (tallies[i] == 3)
+          _three = true
+          _three_at = i+1
+        end
+      end
+
+      if (_two and _three)
+        return _two_at * 2 + _three_at * 3
+      else
+        return 0
+      end
+    end
+
+    private 
+
+    def singles(d1, d2, d3, d4, d5, value)
       sum = 0
       if (d1 == value)
         sum += value
@@ -191,7 +191,7 @@ class Yatzy
       end
 
       sum
-  end
+    end
 
   end
 
