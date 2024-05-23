@@ -5,7 +5,7 @@ class Yatzy
 
   class << self
     def chance(*args)
-      new(*args).chance(*args)
+      new(*args).chance
     end
 
     def yatzy(dice)
@@ -187,14 +187,8 @@ class Yatzy
     sum
   end
 
-  def chance(d1, d2, d3, d4, d5)
-    total = 0
-    total += d1
-    total += d2
-    total += d3
-    total += d4
-    total += d5
-    total
+  def chance
+    @dice.sum
   end
 
   def yatzy(dice)
