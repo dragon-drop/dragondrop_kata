@@ -36,24 +36,8 @@ class Yatzy
       singles(*args, 1)
     end
 
-    def twos( d1,  d2,  d3,  d4,  d5)
-      sum = 0
-      if (d1 == 2)
-        sum += 2
-      end
-      if (d2 == 2)
-        sum += 2
-      end
-      if (d3 == 2)
-        sum += 2
-      end
-      if (d4 == 2)
-        sum += 2
-      end
-      if (d5 == 2)
-        sum += 2
-      end
-      return sum
+    def twos(*args)
+      singles(*args, 2)
     end
 
     def threes( d1,  d2,  d3,  d4,  d5)
