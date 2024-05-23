@@ -44,7 +44,6 @@ class Yatzy
       counts[d3 - 1] += 1
       counts[d4 - 1] += 1
       counts[d5 - 1] += 1
-      at = 0
       (0...6).each do |at|
         return (6 - at) * 2 if counts[6 - at - 1] >= 2
       end
