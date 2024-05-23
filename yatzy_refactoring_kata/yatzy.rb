@@ -92,6 +92,7 @@ class Yatzy
       end
       return s
     end
+
   def score_pair( d1,  d2,  d3,  d4,  d5)
     counts = [0]*6
     counts[d1-1] += 1
@@ -222,6 +223,30 @@ class Yatzy
       return 0
     end
   end
+
+  private 
+
+  def singles(d1, d2, d3, d4, d5, value)
+      sum = 0
+      if (d1 == value)
+        sum += value
+      end
+      if (d2 == value)
+        sum += value
+      end
+      if (d3 == value)
+        sum += value
+      end
+      if (d4 == value)
+        sum += value
+      end
+      if (d5 == value)
+        sum += value
+      end
+
+      sum
+  end
+
   end
 
   def fours
