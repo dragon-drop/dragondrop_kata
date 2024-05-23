@@ -51,27 +51,6 @@ class Yatzy
     def fullHouse(*args)
       new(*args).fullHouse(*args)
     end
-
-    private
-
-    def singles(d1, d2, d3, d4, d5, value)
-      sum = 0
-      sum += value if d1 == value
-      sum += value if d2 == value
-      sum += value if d3 == value
-      sum += value if d4 == value
-      sum += value if d5 == value
-
-      sum
-    end
-
-    def of_a_kind(d1, d2, d3, d4, d5, count)
-      dice = [d1, d2, d3, d4, d5]
-      tally = dice.tally # => {3: 3, 4: 1, 5: 1}
-
-      dice_value = tally.find { |_dice_value, dice_count| dice_count >= count }.first || 0
-      dice_value * count
-    end
   end
 
   def fours
