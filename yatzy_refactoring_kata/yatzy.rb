@@ -87,10 +87,10 @@ class Yatzy
       tallies[d3 - 1] += 1
       tallies[d4 - 1] += 1
       tallies[d5 - 1] += 1
-      if tallies[0] == 1 and
-         tallies[1] == 1 and
-         tallies[2] == 1 and
-         tallies[3] == 1 and
+      if tallies[0] == 1 &&
+         tallies[1] == 1 &&
+         tallies[2] == 1 &&
+         tallies[3] == 1 &&
          tallies[4] == 1
         15
       else
@@ -105,7 +105,7 @@ class Yatzy
       tallies[d3 - 1] += 1
       tallies[d4 - 1] += 1
       tallies[d5 - 1] += 1
-      return 20 if tallies[1] == 1 and tallies[2] == 1 and tallies[3] == 1 and tallies[4] == 1 and tallies[5] == 1
+      return 20 if tallies[1] == 1 && tallies[2] == 1 && tallies[3] == 1 && tallies[4] == 1 && tallies[5] == 1
 
       0
     end
@@ -139,7 +139,7 @@ class Yatzy
         end
       end
 
-      if _two and _three
+      if _two && _three
         (_two_at * 2) + (_three_at * 3)
       else
         0
