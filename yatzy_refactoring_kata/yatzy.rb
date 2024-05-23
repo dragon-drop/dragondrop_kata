@@ -106,12 +106,6 @@ class Yatzy
   end
 
   def score_pair(d1, d2, d3, d4, d5)
-    counts = [0] * 6
-    counts[d1 - 1] += 1
-    counts[d2 - 1] += 1
-    counts[d3 - 1] += 1
-    counts[d4 - 1] += 1
-    counts[d5 - 1] += 1
     (0...6).each do |at|
       return (6 - at) * 2 if counts[6 - at - 1] >= 2
     end
@@ -233,5 +227,17 @@ class Yatzy
 
     dice_value = tally.find { |_dice_value, dice_count| dice_count >= count }.first || 0
     dice_value * count
+  end
+
+  def counts
+    d1, d2, d3, d4, d5 = @dice
+    counts = [0] * 6
+  
+    counts[d1 - 1] += 1
+    counts[d2 - 1] += 1
+    counts[d3 - 1] += 1
+    counts[d4 - 1] += 1
+    counts[d5 - 1] += 1
+    return counts
   end
 end
