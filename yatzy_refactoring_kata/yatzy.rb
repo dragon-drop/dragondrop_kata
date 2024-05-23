@@ -1,11 +1,6 @@
 class Yatzy
   def initialize(d1, d2, d3, d4, _five)
-    @dice = [0]*5
-    @dice[0] = d1
-    @dice[1] = d2
-    @dice[2] = d3
-    @dice[3] = d4
-    @dice[4] = _five
+    @dice = [d1, d2, d3, d4, _five]
   end
 
   class << self
