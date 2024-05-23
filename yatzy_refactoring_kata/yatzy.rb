@@ -82,9 +82,9 @@ class Yatzy
     @dice.sum
   end
 
-  def yatzy(dice)
-    counts = [0] * (dice.length + 1)
-    for die in dice do
+  def yatzy(_dice)
+    counts = [0] * (@dice.length + 1)
+    for die in @dice do
       counts[die - 1] += 1
     end
     for i in 0..counts.size do
