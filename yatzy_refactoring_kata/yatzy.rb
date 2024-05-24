@@ -126,7 +126,7 @@ class Yatzy
     tallies[d3 - 1] += 1
     tallies[d4 - 1] += 1
     tallies[d5 - 1] += 1
-    for i in (0..6)
+    (0..6).each do |i|
       return (i + 1) * 4 if tallies[i] >= 4
     end
     0
