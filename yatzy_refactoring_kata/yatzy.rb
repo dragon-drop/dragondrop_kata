@@ -15,6 +15,12 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     count * number
   end
 
+  def score_pair
+    # get all pairs or higher
+    pairs = @tally.select { |_dice, count| count >= 2 }
+    pairs.max.first * 2
+  end
+
   def self.chance(*dice)
     dice.sum
   end
@@ -48,24 +54,9 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     single(6)
   end
 
-  # rubocop:todo Metrics/MethodLength
-  # rubocop:todo Naming/MethodParameterName
-  # rubocop:todo Metrics/ParameterLists
-  def self.score_pair(d1, d2, d3, d4, d5) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
-    # rubocop:enable Metrics/ParameterLists
-    # rubocop:enable Naming/MethodParameterName
-    counts = [0] * 6
-    counts[d1 - 1] += 1
-    counts[d2 - 1] += 1
-    counts[d3 - 1] += 1
-    counts[d4 - 1] += 1
-    counts[d5 - 1] += 1
-    (0...6).each do |at|
-      return (6 - at) * 2 if counts[6 - at - 1] >= 2
-    end
-    0
+  def self.score_pair(*dice)
+    new(*dice).score_pair
   end
-  # rubocop:enable Metrics/MethodLength
 
   # rubocop:todo Metrics/MethodLength
   # rubocop:todo Naming/MethodParameterName
