@@ -10,14 +10,6 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     0
   end
 
-  def ones
-    single(1)
-  end
-
-  def twos
-    single(2)
-  end
-
   def single(number)
     count = @tally[number] || 0
     count * number
@@ -33,11 +25,11 @@ class Yatzy # rubocop:todo Metrics/ClassLength
   end
 
   def self.ones(*dice)
-    new(*dice).ones
+    new(*dice).single(1)
   end
 
   def self.twos(*dice)
-    new(*dice).twos
+    new(*dice).single(2)
   end
 
   # rubocop:todo Naming/MethodParameterName
