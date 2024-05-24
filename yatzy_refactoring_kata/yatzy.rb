@@ -10,6 +10,10 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     0
   end
 
+  def ones
+    @tally[1] || 0
+  end
+
   def self.chance(*dice)
     dice.sum
   end
@@ -18,19 +22,8 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     new(*dice).yatzy
   end
 
-  # rubocop:todo Naming/MethodParameterName
-  # rubocop:todo Metrics/ParameterLists
-  def self.ones(d1, d2, d3, d4, d5) # rubocop:todo Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
-    # rubocop:enable Metrics/ParameterLists
-    # rubocop:enable Naming/MethodParameterName
-    sum = 0
-    sum += 1 if d1 == 1
-    sum += 1 if d2 == 1
-    sum += 1 if d3 == 1
-    sum += 1 if d4 == 1
-    sum += 1 if d5 == 1
-
-    sum
+  def self.ones(*dice)
+    new(*dice).ones
   end
 
   # rubocop:todo Naming/MethodParameterName
