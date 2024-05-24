@@ -25,21 +25,9 @@ class Yatzy
     @tally.select { |_dice, count| count >= 2 }
   end
 
-  def score_pair
-    n_of_a_kind(2)
-  end
-
   def two_pair
     # multiply both pairs by their values and return the sum
     pairs.map { |dice, _count| dice * 2 }.sum
-  end
-
-  def four_of_a_kind
-    n_of_a_kind(4)
-  end
-
-  def three_of_a_kind
-    n_of_a_kind(3)
   end
 
   def full_house
@@ -82,7 +70,7 @@ class Yatzy
   end
 
   def self.score_pair(*dice)
-    new(*dice).score_pair
+    new(*dice).n_of_a_kind(2)
   end
 
   def self.two_pair(*dice)
@@ -90,11 +78,11 @@ class Yatzy
   end
 
   def self.four_of_a_kind(*dice)
-    new(*dice).four_of_a_kind
+    new(*dice).n_of_a_kind(4)
   end
 
   def self.three_of_a_kind(*dice)
-    new(*dice).three_of_a_kind
+    new(*dice).n_of_a_kind(3)
   end
 
   def self.smallStraight(*dice) # rubocop:todo Naming/MethodName
