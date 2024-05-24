@@ -41,11 +41,7 @@ class Yatzy # rubocop:todo Metrics/ClassLength
   end
 
   def fives
-    s = 0
-    Range.new(0, @dice.size).each do |i|
-      s += 5 if @dice[i] == 5
-    end
-    s
+    single(5)
   end
 
   def sixes
