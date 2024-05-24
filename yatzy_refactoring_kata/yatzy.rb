@@ -15,12 +15,18 @@ class Yatzy
     count * number
   end
 
+  def n_of_a_kind(number)
+    dice = @tally.select { |_dice, count| count >= number }.max&.first || 0
+
+    dice * number
+  end
+
   def pairs
     @tally.select { |_dice, count| count >= 2 }
   end
 
   def score_pair
-    pairs.max.first * 2
+    n_of_a_kind(2)
   end
 
   def two_pair
@@ -29,15 +35,11 @@ class Yatzy
   end
 
   def four_of_a_kind
-    dice = @tally.select { |_dice, count| count >= 4 }.max&.first || 0
-
-    dice * 4
+    n_of_a_kind(4)
   end
 
   def three_of_a_kind
-    dice = @tally.select { |_dice, count| count >= 3 }.max&.first || 0
-
-    dice * 3
+    n_of_a_kind(3)
   end
 
   def full_house
