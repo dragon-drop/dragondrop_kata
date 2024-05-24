@@ -106,7 +106,7 @@ class Yatzy
     counts[d5 - 1] += 1
     n = 0
     score = 0
-    for i in Array 0..5
+    (0..5).each do |i|
       if counts[6 - i - 1] >= 2
         n += 1
         score += (6 - i)
