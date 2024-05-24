@@ -78,7 +78,7 @@ class Yatzy
 
   def sixes
     sum = 0
-    for at in 0..@dice.length
+    (0..@dice.length).each do |at|
       sum += 6 if @dice[at] == 6
     end
     sum
