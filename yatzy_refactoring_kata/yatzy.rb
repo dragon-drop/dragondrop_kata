@@ -196,9 +196,7 @@ class Yatzy
         _two = true
         _two_at = i + 1
       end
-    end
 
-    (0..5).each do |i|
       if tallies[i] == 3
         _three = true
         _three_at = i + 1
