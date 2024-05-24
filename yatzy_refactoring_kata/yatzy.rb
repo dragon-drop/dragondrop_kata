@@ -4,18 +4,8 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     @tally = @dice.tally
   end
 
-  # rubocop:todo Naming/MethodParameterName
-  # rubocop:todo Metrics/ParameterLists
-  def self.chance(d1, d2, d3, d4, d5) # rubocop:todo Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
-    # rubocop:enable Metrics/ParameterLists
-    # rubocop:enable Naming/MethodParameterName
-    total = 0
-    total += d1
-    total += d2
-    total += d3
-    total += d4
-    total += d5
-    total
+  def self.chance(*dice)
+    dice.sum
   end
 
   def self.yatzy(dice) # rubocop:todo Metrics/MethodLength
