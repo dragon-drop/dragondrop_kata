@@ -37,11 +37,7 @@ class Yatzy # rubocop:todo Metrics/ClassLength
   end
 
   def fours
-    sum = 0
-    (0..4).each do |at|
-      sum += 4 if @dice[at] == 4
-    end
-    sum
+    single(4)
   end
 
   def fives
