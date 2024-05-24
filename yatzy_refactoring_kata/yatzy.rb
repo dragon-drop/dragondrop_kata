@@ -14,7 +14,7 @@ class Yatzy
     dice.each do |die|
       counts[die - 1] += 1
     end
-    for i in 0..counts.size do
+    (0..counts.size).each do |i|
       return 50 if counts[i] == 5
     end
     0
