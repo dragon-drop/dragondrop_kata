@@ -71,7 +71,7 @@ class Yatzy
   def fives
     s = 0
     i = 0
-    for i in Range.new(0, @dice.size)
+    Range.new(0, @dice.size).each do |i|
       s += 5 if @dice[i] == 5
     end
     s
