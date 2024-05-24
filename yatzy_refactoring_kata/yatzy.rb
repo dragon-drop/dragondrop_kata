@@ -11,7 +11,7 @@ class Yatzy # rubocop:todo Metrics/ClassLength
   end
 
   def ones
-    @tally[1] || 0
+    single(1)
   end
 
   def twos
