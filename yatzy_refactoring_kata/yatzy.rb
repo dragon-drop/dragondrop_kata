@@ -28,6 +28,12 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     pairs.map { |dice, _count| dice * 2 }.sum
   end
 
+  def four_of_a_kind
+    dice = @tally.select { |_dice, count| count >= 4 }.max&.first || 0
+
+    dice * 4
+  end
+
   def self.chance(*dice)
     dice.sum
   end
@@ -69,24 +75,9 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     new(*dice).two_pair
   end
 
-  # rubocop:todo Metrics/MethodLength
-  # rubocop:todo Naming/MethodParameterName
-  # rubocop:todo Metrics/ParameterLists
-  def self.four_of_a_kind(_one, _two, d3, d4, d5) # rubocop:todo Lint/UnderscorePrefixedVariableName, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
-    # rubocop:enable Metrics/ParameterLists
-    # rubocop:enable Naming/MethodParameterName
-    tallies = [0] * 6
-    tallies[_one - 1] += 1
-    tallies[_two - 1] += 1
-    tallies[d3 - 1] += 1
-    tallies[d4 - 1] += 1
-    tallies[d5 - 1] += 1
-    (0..6).each do |i|
-      return (i + 1) * 4 if tallies[i] >= 4
-    end
-    0
+  def self.four_of_a_kind(*dice)
+    new(*dice).four_of_a_kind
   end
-  # rubocop:enable Metrics/MethodLength
 
   # rubocop:todo Naming/MethodParameterName
   # rubocop:todo Metrics/ParameterLists
