@@ -15,9 +15,11 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     count * number
   end
 
+  def pairs
+    @tally.select { |_dice, count| count >= 2 }
+  end
+
   def score_pair
-    # get all pairs or higher
-    pairs = @tally.select { |_dice, count| count >= 2 }
     pairs.max.first * 2
   end
 
