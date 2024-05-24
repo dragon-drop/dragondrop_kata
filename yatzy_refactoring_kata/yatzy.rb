@@ -1,4 +1,4 @@
-class Yatzy # rubocop:todo Metrics/ClassLength
+class Yatzy
   def initialize(*dice)
     @dice = *dice
     @tally = @dice.tally
@@ -32,6 +32,12 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     dice = @tally.select { |_dice, count| count >= 4 }.max&.first || 0
 
     dice * 4
+  end
+
+  def full_house
+    return @dice.sum if @tally.value?(3) && @tally.value?(2)
+
+    0
   end
 
   def self.chance(*dice)
@@ -110,44 +116,9 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     0
   end
 
-  # rubocop:todo Metrics/MethodLength
-  # rubocop:todo Naming/MethodParameterName
   # rubocop:todo Naming/MethodName
-  # rubocop:todo Metrics/ParameterLists
-  def self.fullHouse(d1, d2, d3, d4, d5) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodName, Naming/MethodParameterName
-    # rubocop:enable Metrics/ParameterLists
-    # rubocop:enable Naming/MethodName
-    # rubocop:enable Naming/MethodParameterName
-    tallies = []
-    two = false
-    two_at = 0
-    three = false
-    three_at = 0
-
-    tallies = [0] * 6
-    tallies[d1 - 1] += 1
-    tallies[d2 - 1] += 1
-    tallies[d3 - 1] += 1
-    tallies[d4 - 1] += 1
-    tallies[d5 - 1] += 1
-
-    (0..5).each do |i| # rubocop:todo Metrics/BlockLength
-      if tallies[i] == 2
-        two = true
-        two_at = i + 1
-      end
-
-      if tallies[i] == 3
-        three = true
-        three_at = i + 1
-      end
-    end
-
-    if two && three
-      (two_at * 2) + (three_at * 3)
-    else
-      0
-    end
+  def self.fullHouse(*dice) # rubocop:todo Naming/MethodName
+    new(*dice).full_house
   end
-  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Naming/MethodName
 end
