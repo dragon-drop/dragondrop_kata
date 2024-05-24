@@ -103,25 +103,12 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     0
   end
 
-  # rubocop:todo Metrics/MethodLength
-  # rubocop:todo Naming/MethodParameterName
   # rubocop:todo Naming/MethodName
-  # rubocop:todo Metrics/ParameterLists
-  def self.largeStraight(d1, d2, d3, d4, d5) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodName, Naming/MethodParameterName
-    # rubocop:enable Metrics/ParameterLists
-    # rubocop:enable Naming/MethodName
-    # rubocop:enable Naming/MethodParameterName
-    tallies = [0] * 6
-    tallies[d1 - 1] += 1
-    tallies[d2 - 1] += 1
-    tallies[d3 - 1] += 1
-    tallies[d4 - 1] += 1
-    tallies[d5 - 1] += 1
-    return 20 if tallies[1] == 1 && tallies[2] == 1 && tallies[3] == 1 && tallies[4] == 1 && tallies[5] == 1
+  def self.largeStraight(*dice) # rubocop:todo Naming/MethodName
+    return 20 if dice.sort == [2, 3, 4, 5, 6]
 
     0
   end
-  # rubocop:enable Metrics/MethodLength
 
   # rubocop:todo Metrics/MethodLength
   # rubocop:todo Naming/MethodParameterName
