@@ -139,7 +139,7 @@ class Yatzy
     t[d3 - 1] += 1
     t[d4 - 1] += 1
     t[d5 - 1] += 1
-    for i in [0, 1, 2, 3, 4, 5]
+    [0, 1, 2, 3, 4, 5].each do |i|
       return (i + 1) * 3 if t[i] >= 3
     end
     0
