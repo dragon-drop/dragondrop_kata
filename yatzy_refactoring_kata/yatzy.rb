@@ -23,6 +23,11 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     pairs.max.first * 2
   end
 
+  def two_pair
+    # multiply both pairs by their values and return the sum
+    pairs.map { |dice, _count| dice * 2 }.sum
+  end
+
   def self.chance(*dice)
     dice.sum
   end
@@ -60,33 +65,9 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     new(*dice).score_pair
   end
 
-  # rubocop:todo Metrics/MethodLength
-  # rubocop:todo Naming/MethodParameterName
-  # rubocop:todo Metrics/ParameterLists
-  def self.two_pair(d1, d2, d3, d4, d5) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
-    # rubocop:enable Metrics/ParameterLists
-    # rubocop:enable Naming/MethodParameterName
-    counts = [0] * 6
-    counts[d1 - 1] += 1
-    counts[d2 - 1] += 1
-    counts[d3 - 1] += 1
-    counts[d4 - 1] += 1
-    counts[d5 - 1] += 1
-    n = 0
-    score = 0
-    (0..5).each do |i|
-      if counts[6 - i - 1] >= 2
-        n += 1
-        score += (6 - i)
-      end
-    end
-    if n == 2
-      score * 2
-    else
-      0
-    end
+  def self.two_pair(*dice)
+    new(*dice).two_pair
   end
-  # rubocop:enable Metrics/MethodLength
 
   # rubocop:todo Metrics/MethodLength
   # rubocop:todo Naming/MethodParameterName
