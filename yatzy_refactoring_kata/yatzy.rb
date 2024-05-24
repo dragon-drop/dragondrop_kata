@@ -179,10 +179,10 @@ class Yatzy
 
   def self.fullHouse(d1, d2, d3, d4, d5)
     tallies = []
-    _two = false
-    _two_at = 0
-    _three = false
-    _three_at = 0
+    two = false
+    two_at = 0
+    three = false
+    three_at = 0
 
     tallies = [0] * 6
     tallies[d1 - 1] += 1
@@ -193,18 +193,18 @@ class Yatzy
 
     (0..5).each do |i|
       if tallies[i] == 2
-        _two = true
-        _two_at = i + 1
+        two = true
+        two_at = i + 1
       end
 
       if tallies[i] == 3
-        _three = true
-        _three_at = i + 1
+        three = true
+        three_at = i + 1
       end
     end
 
-    if _two && _three
-      (_two_at * 2) + (_three_at * 3)
+    if two && three
+      (two_at * 2) + (three_at * 3)
     else
       0
     end
