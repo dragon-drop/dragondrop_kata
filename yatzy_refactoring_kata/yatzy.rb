@@ -11,7 +11,7 @@ class Yatzy
 
   def self.yatzy(dice)
     counts = [0] * (dice.length + 1)
-    for die in dice do
+    dice.each do |die|
       counts[die - 1] += 1
     end
     for i in 0..counts.size do
