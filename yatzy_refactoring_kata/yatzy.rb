@@ -4,19 +4,18 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     @tally = @dice.tally
   end
 
+  def yatzy
+    return 50 if @tally.value? 5
+
+    0
+  end
+
   def self.chance(*dice)
     dice.sum
   end
 
-  def self.yatzy(dice) # rubocop:todo Metrics/MethodLength
-    counts = [0] * (dice.length + 1)
-    dice.each do |die|
-      counts[die - 1] += 1
-    end
-    (0..counts.size).each do |i|
-      return 50 if counts[i] == 5
-    end
-    0
+  def self.yatzy(dice)
+    new(*dice).yatzy
   end
 
   # rubocop:todo Naming/MethodParameterName
