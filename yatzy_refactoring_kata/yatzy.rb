@@ -18,6 +18,7 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     dice.sum
   end
 
+  # TODO: .yatzy takes an array instead of 5 arguments for it's dice
   def self.yatzy(dice)
     new(*dice).yatzy
   end
