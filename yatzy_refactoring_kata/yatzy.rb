@@ -1,5 +1,9 @@
-class Yatzy
-  def self.chance(d1, d2, d3, d4, d5)
+class Yatzy # rubocop:todo Metrics/ClassLength
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Metrics/ParameterLists
+  def self.chance(d1, d2, d3, d4, d5) # rubocop:todo Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodParameterName
     total = 0
     total += d1
     total += d2
@@ -9,7 +13,7 @@ class Yatzy
     total
   end
 
-  def self.yatzy(dice)
+  def self.yatzy(dice) # rubocop:todo Metrics/MethodLength
     counts = [0] * (dice.length + 1)
     dice.each do |die|
       counts[die - 1] += 1
@@ -20,7 +24,11 @@ class Yatzy
     0
   end
 
-  def self.ones(d1, d2, d3, d4, d5)
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Metrics/ParameterLists
+  def self.ones(d1, d2, d3, d4, d5) # rubocop:todo Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodParameterName
     sum = 0
     sum += 1 if d1 == 1
     sum += 1 if d2 == 1
@@ -31,7 +39,11 @@ class Yatzy
     sum
   end
 
-  def self.twos(d1, d2, d3, d4, d5)
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Metrics/ParameterLists
+  def self.twos(d1, d2, d3, d4, d5) # rubocop:todo Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodParameterName
     sum = 0
     sum += 2 if d1 == 2
     sum += 2 if d2 == 2
@@ -41,7 +53,11 @@ class Yatzy
     sum
   end
 
-  def self.threes(d1, d2, d3, d4, d5)
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Metrics/ParameterLists
+  def self.threes(d1, d2, d3, d4, d5) # rubocop:todo Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodParameterName
     s = 0
     s += 3 if d1 == 3
     s += 3 if d2 == 3
@@ -51,7 +67,12 @@ class Yatzy
     s
   end
 
-  def initialize(d1, d2, d3, d4, _five)
+  # rubocop:todo Metrics/MethodLength
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Metrics/ParameterLists
+  def initialize(d1, d2, d3, d4, _five) # rubocop:todo Lint/UnderscorePrefixedVariableName, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodParameterName
     @dice = [0] * 5
     @dice[0] = d1
     @dice[1] = d2
@@ -59,6 +80,7 @@ class Yatzy
     @dice[3] = d4
     @dice[4] = _five
   end
+  # rubocop:enable Metrics/MethodLength
 
   def fours
     sum = 0
@@ -84,7 +106,12 @@ class Yatzy
     sum
   end
 
-  def self.score_pair(d1, d2, d3, d4, d5)
+  # rubocop:todo Metrics/MethodLength
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Metrics/ParameterLists
+  def self.score_pair(d1, d2, d3, d4, d5) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodParameterName
     counts = [0] * 6
     counts[d1 - 1] += 1
     counts[d2 - 1] += 1
@@ -96,8 +123,14 @@ class Yatzy
     end
     0
   end
+  # rubocop:enable Metrics/MethodLength
 
-  def self.two_pair(d1, d2, d3, d4, d5)
+  # rubocop:todo Metrics/MethodLength
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Metrics/ParameterLists
+  def self.two_pair(d1, d2, d3, d4, d5) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodParameterName
     counts = [0] * 6
     counts[d1 - 1] += 1
     counts[d2 - 1] += 1
@@ -118,8 +151,14 @@ class Yatzy
       0
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
-  def self.four_of_a_kind(_one, _two, d3, d4, d5)
+  # rubocop:todo Metrics/MethodLength
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Metrics/ParameterLists
+  def self.four_of_a_kind(_one, _two, d3, d4, d5) # rubocop:todo Lint/UnderscorePrefixedVariableName, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodParameterName
     tallies = [0] * 6
     tallies[_one - 1] += 1
     tallies[_two - 1] += 1
@@ -131,8 +170,13 @@ class Yatzy
     end
     0
   end
+  # rubocop:enable Metrics/MethodLength
 
-  def self.three_of_a_kind(d1, d2, d3, d4, d5)
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Metrics/ParameterLists
+  def self.three_of_a_kind(d1, d2, d3, d4, d5) # rubocop:todo Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodParameterName
     t = [0] * 6
     t[d1 - 1] += 1
     t[d2 - 1] += 1
@@ -145,7 +189,14 @@ class Yatzy
     0
   end
 
-  def self.smallStraight(d1, d2, d3, d4, d5)
+  # rubocop:todo Metrics/MethodLength
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Naming/MethodName
+  # rubocop:todo Metrics/ParameterLists
+  def self.smallStraight(d1, d2, d3, d4, d5) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodName, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodName
+    # rubocop:enable Naming/MethodParameterName
     tallies = [0] * 6
     tallies[d1 - 1] += 1
     tallies[d2 - 1] += 1
@@ -162,8 +213,16 @@ class Yatzy
       0
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
-  def self.largeStraight(d1, d2, d3, d4, d5)
+  # rubocop:todo Metrics/MethodLength
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Naming/MethodName
+  # rubocop:todo Metrics/ParameterLists
+  def self.largeStraight(d1, d2, d3, d4, d5) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodName, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodName
+    # rubocop:enable Naming/MethodParameterName
     tallies = [0] * 6
     tallies[d1 - 1] += 1
     tallies[d2 - 1] += 1
@@ -174,8 +233,16 @@ class Yatzy
 
     0
   end
+  # rubocop:enable Metrics/MethodLength
 
-  def self.fullHouse(d1, d2, d3, d4, d5)
+  # rubocop:todo Metrics/MethodLength
+  # rubocop:todo Naming/MethodParameterName
+  # rubocop:todo Naming/MethodName
+  # rubocop:todo Metrics/ParameterLists
+  def self.fullHouse(d1, d2, d3, d4, d5) # rubocop:todo Metrics/AbcSize, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodName, Naming/MethodParameterName
+    # rubocop:enable Metrics/ParameterLists
+    # rubocop:enable Naming/MethodName
+    # rubocop:enable Naming/MethodParameterName
     tallies = []
     two = false
     two_at = 0
@@ -189,7 +256,7 @@ class Yatzy
     tallies[d4 - 1] += 1
     tallies[d5 - 1] += 1
 
-    (0..5).each do |i|
+    (0..5).each do |i| # rubocop:todo Metrics/BlockLength
       if tallies[i] == 2
         two = true
         two_at = i + 1
@@ -207,4 +274,5 @@ class Yatzy
       0
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end
