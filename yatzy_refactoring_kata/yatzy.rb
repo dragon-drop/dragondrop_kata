@@ -1,6 +1,7 @@
 class Yatzy # rubocop:todo Metrics/ClassLength
   def initialize(*dice)
     @dice = *dice
+    @tally = @dice.tally
   end
 
   # rubocop:todo Naming/MethodParameterName
