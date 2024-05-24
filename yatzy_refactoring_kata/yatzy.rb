@@ -14,6 +14,15 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     @tally[1] || 0
   end
 
+  def twos
+    single(2)
+  end
+
+  def single(number)
+    count = @tally[number] || 0
+    count * number
+  end
+
   def self.chance(*dice)
     dice.sum
   end
@@ -27,18 +36,8 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     new(*dice).ones
   end
 
-  # rubocop:todo Naming/MethodParameterName
-  # rubocop:todo Metrics/ParameterLists
-  def self.twos(d1, d2, d3, d4, d5) # rubocop:todo Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
-    # rubocop:enable Metrics/ParameterLists
-    # rubocop:enable Naming/MethodParameterName
-    sum = 0
-    sum += 2 if d1 == 2
-    sum += 2 if d2 == 2
-    sum += 2 if d3 == 2
-    sum += 2 if d4 == 2
-    sum += 2 if d5 == 2
-    sum
+  def self.twos(*dice)
+    new(*dice).twos
   end
 
   # rubocop:todo Naming/MethodParameterName
