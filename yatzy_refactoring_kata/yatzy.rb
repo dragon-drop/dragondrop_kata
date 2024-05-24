@@ -32,18 +32,8 @@ class Yatzy # rubocop:todo Metrics/ClassLength
     new(*dice).single(2)
   end
 
-  # rubocop:todo Naming/MethodParameterName
-  # rubocop:todo Metrics/ParameterLists
-  def self.threes(d1, d2, d3, d4, d5) # rubocop:todo Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
-    # rubocop:enable Metrics/ParameterLists
-    # rubocop:enable Naming/MethodParameterName
-    s = 0
-    s += 3 if d1 == 3
-    s += 3 if d2 == 3
-    s += 3 if d3 == 3
-    s += 3 if d4 == 3
-    s += 3 if d5 == 3
-    s
+  def self.threes(*dice)
+    new(*dice).single(3)
   end
 
   def fours
