@@ -45,11 +45,7 @@ class Yatzy # rubocop:todo Metrics/ClassLength
   end
 
   def sixes
-    sum = 0
-    (0..@dice.length).each do |at|
-      sum += 6 if @dice[at] == 6
-    end
-    sum
+    single(6)
   end
 
   # rubocop:todo Metrics/MethodLength
