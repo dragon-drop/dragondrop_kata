@@ -62,7 +62,7 @@ class Yatzy
 
   def fours
     sum = 0
-    for at in Array 0..4
+    (0..4).each do |at|
       sum += 4 if @dice[at] == 4
     end
     sum
