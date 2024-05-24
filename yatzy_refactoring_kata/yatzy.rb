@@ -102,23 +102,19 @@ class Yatzy
     0
   end
 
-  # rubocop:todo Naming/MethodName
   def self.smallStraight(*dice) # rubocop:todo Naming/MethodName
     return 15 if dice.sort == [1, 2, 3, 4, 5]
 
     0
   end
 
-  # rubocop:todo Naming/MethodName
   def self.largeStraight(*dice) # rubocop:todo Naming/MethodName
     return 20 if dice.sort == [2, 3, 4, 5, 6]
 
     0
   end
 
-  # rubocop:todo Naming/MethodName
   def self.fullHouse(*dice) # rubocop:todo Naming/MethodName
     new(*dice).full_house
   end
-  # rubocop:enable Naming/MethodName
 end
