@@ -1,19 +1,8 @@
 class Yatzy # rubocop:todo Metrics/ClassLength
-  # rubocop:todo Metrics/MethodLength
-  # rubocop:todo Naming/MethodParameterName
-  # rubocop:todo Metrics/ParameterLists
-  def initialize(d1, d2, d3, d4, _five) # rubocop:todo Lint/UnderscorePrefixedVariableName, Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
-    # rubocop:enable Metrics/ParameterLists
-    # rubocop:enable Naming/MethodParameterName
-    @dice = [0] * 5
-    @dice[0] = d1
-    @dice[1] = d2
-    @dice[2] = d3
-    @dice[3] = d4
-    @dice[4] = _five
+  def initialize(*dice)
+    @dice = *dice
   end
 
-  # rubocop:enable Metrics/MethodLength
   # rubocop:todo Naming/MethodParameterName
   # rubocop:todo Metrics/ParameterLists
   def self.chance(d1, d2, d3, d4, d5) # rubocop:todo Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
