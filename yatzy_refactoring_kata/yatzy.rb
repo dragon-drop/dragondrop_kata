@@ -191,7 +191,7 @@ class Yatzy
     tallies[d4 - 1] += 1
     tallies[d5 - 1] += 1
 
-    for i in Array 0..5
+    (0..5).each do |i|
       if tallies[i] == 2
         _two = true
         _two_at = i + 1
