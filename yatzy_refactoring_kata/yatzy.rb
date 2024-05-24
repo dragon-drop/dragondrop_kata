@@ -34,6 +34,12 @@ class Yatzy
     dice * 4
   end
 
+  def three_of_a_kind
+    dice = @tally.select { |_dice, count| count >= 3 }.max&.first || 0
+
+    dice * 3
+  end
+
   def full_house
     return @dice.sum if @tally.value?(3) && @tally.value?(2)
 
@@ -85,21 +91,8 @@ class Yatzy
     new(*dice).four_of_a_kind
   end
 
-  # rubocop:todo Naming/MethodParameterName
-  # rubocop:todo Metrics/ParameterLists
-  def self.three_of_a_kind(d1, d2, d3, d4, d5) # rubocop:todo Metrics/MethodLength, Metrics/ParameterLists, Naming/MethodParameterName
-    # rubocop:enable Metrics/ParameterLists
-    # rubocop:enable Naming/MethodParameterName
-    t = [0] * 6
-    t[d1 - 1] += 1
-    t[d2 - 1] += 1
-    t[d3 - 1] += 1
-    t[d4 - 1] += 1
-    t[d5 - 1] += 1
-    [0, 1, 2, 3, 4, 5].each do |i|
-      return (i + 1) * 3 if t[i] >= 3
-    end
-    0
+  def self.three_of_a_kind(*dice)
+    new(*dice).three_of_a_kind
   end
 
   def self.smallStraight(*dice) # rubocop:todo Naming/MethodName
