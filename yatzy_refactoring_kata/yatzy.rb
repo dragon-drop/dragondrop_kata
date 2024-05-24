@@ -180,7 +180,6 @@ class Yatzy
   def self.fullHouse(d1, d2, d3, d4, d5)
     tallies = []
     _two = false
-    i = 0
     _two_at = 0
     _three = false
     _three_at = 0
