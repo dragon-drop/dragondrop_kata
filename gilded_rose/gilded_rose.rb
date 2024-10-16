@@ -3,52 +3,45 @@ class GildedRose
     @items = items
   end
 
-  # rubocop:todo Metrics/PerceivedComplexity
   # rubocop:todo Metrics/MethodLength
-  # rubocop:todo Metrics/AbcSize
-  def update_quality # rubocop:todo Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
-    @items.each do |item| # rubocop:todo Metrics/BlockLength
+  def update_quality # rubocop:todo Metrics/MethodLength
+    @items.each do |item|
       next update_aged_brie(item) if item.name == "Aged Brie"
       next update_sulfuras(item) if item.name == "Sulfuras, Hand of Ragnaros"
+      next update_backstage_passes(item) if item.name == "Backstage passes to a TAFKAL80ETC concert"
 
-      if (item.name != "Aged Brie") && (item.name != "Backstage passes to a TAFKAL80ETC concert")
-        item.quality = item.quality - 1 if item.quality.positive? && (item.name != "Sulfuras, Hand of Ragnaros")
-      elsif item.quality < 50
-        item.quality = item.quality + 1
-        if item.name == "Backstage passes to a TAFKAL80ETC concert"
-          item.quality = item.quality + 1 if item.sell_in < 11 && (item.quality < 50)
-          item.quality = item.quality + 1 if item.sell_in < 6 && (item.quality < 50)
-        end
-      end
-      item.sell_in = item.sell_in - 1 if item.name != "Sulfuras, Hand of Ragnaros"
-      if item.sell_in.negative?
-        if item.name != "Aged Brie"
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            item.quality = item.quality - item.quality # rubocop:todo Lint/BinaryOperatorWithIdenticalOperands
-          elsif item.quality.positive? && (item.name != "Sulfuras, Hand of Ragnaros")
-            item.quality = item.quality - 1
-          end
-        elsif item.quality < 50
-          item.quality = item.quality + 1
-        end
-      end
+      update_normal_item(item)
     end
   end
 
   def update_aged_brie(item)
-    if item.sell_in.positive?
-      item.quality += 1 if item.quality < 50
-    else
-      item.quality += 2
-    end
+    item.quality += 1
+    item.quality += 1 if item.sell_in <= 0
+
+    item.quality = 50 if item.quality > 50
     item.sell_in -= 1
   end
 
   def update_sulfuras(_item); end
 
-  # rubocop:enable Metrics/AbcSize
+  def update_backstage_passes(item)
+    item.quality += 1
+    item.quality += 1 if item.sell_in < 11
+    item.quality += 1 if item.sell_in < 6
+    item.quality = 0 if item.sell_in <= 0
+
+    item.quality = 50 if item.quality > 50
+
+    item.sell_in -= 1
+  end
+
+  def update_normal_item(item)
+    item.quality -= 1
+    item.sell_in -= 1
+    item.quality = 0 if item.quality.negative?
+  end
+
   # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/PerceivedComplexity
 end
 
 class Item

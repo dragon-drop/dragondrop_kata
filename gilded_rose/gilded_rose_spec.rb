@@ -95,6 +95,11 @@ describe GildedRose do
   #        or less but
   #     - `Quality` drops to `0` after the concert
   context "when the item is Backstage passes" do
+    it "decreases the sell in by 1" do
+      items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 2, 1), Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 1)]
+      GildedRose.new(items).update_quality
+      expect(items[0].sell_in).to eq 1
+    end
     context "when the are more than 10 days to sell in" do
       context "when the quality is less than 50" do
         it "increases quality by 1" do
