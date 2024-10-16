@@ -6,11 +6,16 @@ class GildedRose
   # rubocop:todo Metrics/MethodLength
   def update_quality # rubocop:todo Metrics/MethodLength
     @items.each do |item|
-      next update_aged_brie(item) if item.name == "Aged Brie"
-      next update_sulfuras(item) if item.name == "Sulfuras, Hand of Ragnaros"
-      next update_backstage_passes(item) if item.name == "Backstage passes to a TAFKAL80ETC concert"
-
-      update_normal_item(item)
+      case item.name
+      when "Aged Brie"
+        update_aged_brie(item)
+      when "Sulfuras, Hand of Ragnaros"
+        update_sulfuras(item)
+      when "Backstage passes to a TAFKAL80ETC concert"
+        update_backstage_passes(item)
+      else
+        update_normal_item(item)
+      end
     end
   end
 
