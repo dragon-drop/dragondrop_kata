@@ -1,54 +1,29 @@
 class GildedRose
   def initialize(items)
-    @items = items
-  end
-
-  # rubocop:todo Metrics/MethodLength
-  def update_quality # rubocop:todo Metrics/MethodLength
-    @items = @items.map do |item|
-      case item.name
-      when "Aged Brie"
-        update_aged_brie(item)
-      when "Sulfuras, Hand of Ragnaros"
-        update_sulfuras(item)
-      when "Backstage passes to a TAFKAL80ETC concert"
-        update_backstage_passes(item)
-      else
-        update_normal_item(item)
-      end
+    @items = items.map do |item|
+      klass_for(item).new(item.name, item.sell_in, item.quality)
     end
   end
 
-  def update_aged_brie(item)
-    item = AgedBrie.new(item.name, item.sell_in, item.quality)
-    item.update
-    item
-    # item.quality += 1
-    # item.quality += 1 if item.sell_in <= 0
-
-    # item.quality = 50 if item.quality > 50
-    # item.sell_in -= 1
+  def klass_for(item)
+    case item.name
+    when "Aged Brie"
+      AgedBrie
+    when "Sulfuras, Hand of Ragnaros"
+      Sulfuras
+    when "Backstage passes to a TAFKAL80ETC concert"
+      BackstagePass
+    else
+      Normal
+    end
   end
 
-  def update_sulfuras(item)
-    item = Sulfuras.new(item.name, item.sell_in, item.quality)
-    item.update
-    item
+  def update_quality
+    @items = @items.map do |item|
+      item.update
+      item
+    end
   end
-
-  def update_backstage_passes(item)
-    item = BackstagePass.new(item.name, item.sell_in, item.quality)
-    item.update
-    item
-  end
-
-  def update_normal_item(item)
-    item = Normal.new(item.name, item.sell_in, item.quality)
-    item.update
-    item
-  end
-
-  # rubocop:enable Metrics/MethodLength
 end
 
 class Item
