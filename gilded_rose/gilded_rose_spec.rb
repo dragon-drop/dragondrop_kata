@@ -45,6 +45,14 @@ describe GildedRose do
         expect(items[0].quality).to eq 50
       end
     end
+
+    context "when the item is passed the sell by date" do
+      it "increases the quality by 2" do
+        items = [Item.new("Aged Brie", 0, 1)]
+        GildedRose.new(items).update_quality
+        expect(items[0].quality).to eq 3
+      end
+    end
   end
   # - __"Sulfuras"__, being a legendary item, never has to be sold or decreases in `Quality`
   context "when the item is Sulfuras" do
