@@ -8,6 +8,8 @@ class GildedRose
   # rubocop:todo Metrics/AbcSize
   def update_quality # rubocop:todo Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
     @items.each do |item| # rubocop:todo Metrics/BlockLength
+      next update_aged_brie_quality(item) if item.name == "Aged Brie"
+
       if (item.name != "Aged Brie") && (item.name != "Backstage passes to a TAFKAL80ETC concert")
         item.quality = item.quality - 1 if item.quality.positive? && (item.name != "Sulfuras, Hand of Ragnaros")
       elsif item.quality < 50
@@ -29,6 +31,14 @@ class GildedRose
           item.quality = item.quality + 1
         end
       end
+    end
+  end
+
+  def update_aged_brie_quality(item)
+    if item.sell_in.positive?
+      item.quality += 1 if item.quality < 50
+    else
+      item.quality += 2
     end
   end
 
