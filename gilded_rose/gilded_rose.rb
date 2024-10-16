@@ -13,6 +13,8 @@ class GildedRose
       Item
     when "Backstage passes to a TAFKAL80ETC concert"
       BackstagePass
+    when "Conjured"
+      Conjured
     else
       Normal
     end
@@ -68,6 +70,15 @@ class BackstagePass < Item
     @quality = 0 if @sell_in <= 0
 
     @quality = 50 if @quality > 50
+
+    @sell_in -= 1
+  end
+end
+
+class Conjured < Item
+  def update
+    @quality -= 2
+    @quality -= 2 if @sell_in <= 0
 
     @sell_in -= 1
   end

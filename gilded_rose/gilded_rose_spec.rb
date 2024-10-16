@@ -178,4 +178,23 @@ describe GildedRose do
     end
   end
 end
+
+describe Conjured do
+  describe "#update" do
+    context "when sell in is greater than 0" do
+      it "decreases the quality by 2" do
+        item = Conjured.new("Conjured", 2, 2)
+        item.update
+        expect(item.quality).to eq 0
+      end
+    end
+    context "when sell in is 0" do
+      it "decreases the quality by 4" do
+        item = Conjured.new("Conjured", 0, 4)
+        item.update
+        expect(item.quality).to eq 0
+      end
+    end
+  end
+end
 # rubocop:enable Metrics/BlockLength
