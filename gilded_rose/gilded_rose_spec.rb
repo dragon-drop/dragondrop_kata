@@ -37,12 +37,21 @@ describe GildedRose do
       end
     end
 
+    #   - The `Quality` of an item is never more than `50`
     context "when the quality is 50" do
       it "does not increase the quality" do
         items = [Item.new("Aged Brie", 2, 50)]
         GildedRose.new(items).update_quality
         expect(items[0].quality).to eq 50
       end
+    end
+  end
+  # - __"Sulfuras"__, being a legendary item, never has to be sold or decreases in `Quality`
+  context "when the item is Sulfuras" do
+    it "does not change the quality" do
+      items = [Item.new("Sulfuras, Hand of Ragnaros", 2, 40)]
+      GildedRose.new(items).update_quality
+      expect(items[0].quality).to eq 40
     end
   end
 end
