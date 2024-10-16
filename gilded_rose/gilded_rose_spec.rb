@@ -30,7 +30,7 @@ describe GildedRose do
     end
 
     it "decreases the sell in by 1" do
-      items = [Item.new("foo", 2, 1)]
+      items = [Item.new("foo", 2, 1), Item.new("foo", 1, 1)]
       GildedRose.new(items).update_quality
       expect(items[0].sell_in).to eq 1
     end
@@ -45,6 +45,12 @@ describe GildedRose do
   end
   #   - __"Aged Brie"__ actually increases in `Quality` the older it gets
   context "when the item is Aged Brie" do
+    it "decreases the sell in by 1" do
+      items = [Item.new("Aged Brie", 2, 1), Item.new("Aged Brie", 1, 1)]
+      GildedRose.new(items).update_quality
+      expect(items[0].sell_in).to eq 1
+    end
+
     context "when the quality is less than 50" do
       it "increases the quality by 1" do
         items = [Item.new("Aged Brie", 2, 1)]
@@ -76,6 +82,11 @@ describe GildedRose do
       items = [Item.new("Sulfuras, Hand of Ragnaros", 2, 40)]
       GildedRose.new(items).update_quality
       expect(items[0].quality).to eq 40
+    end
+    it "does not change the sell in" do
+      items = [Item.new("Sulfuras, Hand of Ragnaros", 2, 40)]
+      GildedRose.new(items).update_quality
+      expect(items[0].sell_in).to eq 2
     end
   end
   #   - __"Backstage passes"__, like aged brie, increases in `Quality` as its `SellIn` value approaches;
