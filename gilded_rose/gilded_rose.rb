@@ -10,7 +10,7 @@ class GildedRose
     when "Aged Brie"
       AgedBrie
     when "Sulfuras, Hand of Ragnaros"
-      Sulfuras
+      Item
     when "Backstage passes to a TAFKAL80ETC concert"
       BackstagePass
     else
@@ -38,6 +38,8 @@ class Item
   def to_s
     "#{@name}, #{@sell_in}, #{@quality}"
   end
+
+  def update; end
 end
 
 class Normal < Item
@@ -56,10 +58,6 @@ class AgedBrie < Item
     @quality = 50 if @quality > 50
     @sell_in -= 1
   end
-end
-
-class Sulfuras < Item
-  def update; end
 end
 
 class BackstagePass < Item
